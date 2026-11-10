@@ -1,0 +1,17 @@
+# Temporary files
+*.tmp
+*.log
+.DS_Store
+
+# Local config
+.env
+*.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Termux specific
+.termux-toolkit-tmp/
