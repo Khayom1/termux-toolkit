@@ -1,0 +1,39 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+# gitstat - Quick git status helper
+# Author: Khayom Abdurahmonov (Khayom1.github.io)
+
+echo ""
+echo "┌─────────────────────────────────────┐"
+echo "│           GIT STATUS                │"
+echo "└─────────────────────────────────────┘"
+echo ""
+
+if ! command -v git &>/dev/null; then
+  echo " Git is not installed."
+  echo " Run: pkg install git"
+  exit 1
+fi
+
+if [ -d .git ]; then
+  echo " Repository: $(basename $(pwd))"
+  echo " Branch:     $(git branch --show-current 2>/dev/null)"
+  echo ""
+  git status -sb
+  echo ""
+  echo " Last 3 commits:"
+  git log --oneline -3 2>/dev/null
+else
+  echo " Not a git repository."
+  echo " Searching nearby..."
+  echo ""
+  find . -maxdepth 2 -type d -name ".git" 2>/dev/null | while read g; do
+    repo=$(dirname "$g")
+    echo " → $repo"
+  done
+fi
+
+echo ""
+echo "─────────────────────────────────────"
+echo " Author: Khayom1.github.io"
+echo ""
