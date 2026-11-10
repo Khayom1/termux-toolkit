@@ -1,0 +1,22 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+# tk-update - Update Termux Toolkit
+# Author: Khayom Abdurahmonov (Khayom1.github.io)
+
+set -e
+
+REPO_URL="https://github.com/Khayom1/termux-toolkit.git"
+TMP_DIR="$HOME/.termux-toolkit-tmp"
+
+echo "[*] Updating Termux Toolkit..."
+
+rm -rf "$TMP_DIR"
+git clone --depth 1 "$REPO_URL" "$TMP_DIR"
+
+cd "$TMP_DIR"
+bash install.sh
+
+rm -rf "$TMP_DIR"
+
+echo "[✓] Toolkit updated successfully!"
+echo "    https://khayom1.github.io"
